@@ -7,6 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Project;
 use InvalidArgumentException;
 use Symfony\Component\HttpFoundation\Request;
+use JMS\Serializer\Annotation\Exclude;
+use JMS\Serializer\Annotation as Serializer;
 
 
 /**
@@ -34,6 +36,7 @@ class Task
     /**
      * @ORM\ManyToOne(targetEntity=Project::class, inversedBy="tasks")
      * @ORM\JoinColumn(nullable=false)
+     * @Serializer\Exclude()
      */
     private $project;
 

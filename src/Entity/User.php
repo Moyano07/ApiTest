@@ -8,6 +8,8 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use InvalidArgumentException;
+use JMS\Serializer\Annotation\Exclude;
+use JMS\Serializer\Annotation as Serializer;
 
 
 
@@ -31,6 +33,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Serializer\Exclude()
      */
     private $password;
 

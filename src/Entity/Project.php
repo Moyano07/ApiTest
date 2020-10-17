@@ -9,6 +9,8 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Entity\User;
 use InvalidArgumentException;
 use Symfony\Component\HttpFoundation\Request;
+use JMS\Serializer\Annotation\Exclude;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * @ORM\Entity(repositoryClass=ProjectRepository::class)
@@ -40,6 +42,7 @@ class Project
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="projects")
      * @ORM\JoinColumn(nullable=false)
+     * @Serializer\Exclude()
      */
     private $user;
 
