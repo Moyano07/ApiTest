@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityNotFoundException;
 use App\Repository\ProjectRepository;
+use Symfony\Component\Security\Core\Security;
 
 
 
@@ -16,20 +17,25 @@ class DoUpdateProject{
      */
     private $porjectRepository;
 
-    public function __construct(ProjectRepository $porjectRepository)
+    private $security;
+
+    public function __construct(ProjectRepository $porjectRepository,
+                                Security $security
+                                )
     {
         $this->porjectRepository = $porjectRepository;
-
+        $this->security = $security;
     }
-
     /**
-     * @Route("/project/update", methods={"POST"})
+     * @Route("/api/project/update", methods={"POST"})
      */
     public function __invoke(Request $request)
     {
         $projectId = $request->get('projectId');
         /** @var $poject Project */
-        $project = $this->porjectRepository->findOneBy(['id'=>$projectId]);
+        $project = $this->porjectRepository->findOneBy(['id'=>$projectId,
+                                                        'user'=> $this->security->getUser()
+                                                        ]);
 
         if(is_null($project))
         {

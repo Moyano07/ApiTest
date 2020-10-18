@@ -10,9 +10,6 @@ use App\Repository\ProjectRepository;
 use App\Entity\Task;
 
 
-
-
-
 class DoCreateTask{
 
     /**
@@ -25,6 +22,8 @@ class DoCreateTask{
      */
     private $projectRepository;
 
+    
+
 
     public function __construct(TaskRepository $taskRepository,
                                 ProjectRepository $projectRepository
@@ -36,7 +35,7 @@ class DoCreateTask{
     }
 
     /**
-     * @Route("/task/create", methods={"POST"})
+     * @Route("/api/task/create", methods={"POST"})
      */
     public function __invoke(Request $request)
     {
@@ -45,6 +44,8 @@ class DoCreateTask{
             $request->get('description'),
             $this->projectRepository->findOneBy(['id'=>$request->get('projectId')])
         );
+
+        $this->taskRepository->persist($task);
 
         return $task;
     }

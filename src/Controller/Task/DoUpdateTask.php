@@ -34,7 +34,7 @@ class DoUpdateTask{
     }
 
     /**
-     * @Route("/task/update", methods={"POST"})
+     * @Route("/api/task/update", methods={"POST"})
      */
     public function __invoke(Request $request)
     {
@@ -49,7 +49,7 @@ class DoUpdateTask{
 
         $projectId = $request->get('projectId');
         /** @var $poject Project */
-        $project = $this->porjectRepository->findOneBy(['id'=>$projectId]);
+        $project = $this->projectRepository->findOneBy(['id'=>$projectId]);
 
         if(is_null($project))
         {
@@ -58,6 +58,8 @@ class DoUpdateTask{
         }
 
         $task->update($request,$project);
+
+        $this->taskRepository->persist($task);
 
         return $task;
     }

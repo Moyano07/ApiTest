@@ -26,7 +26,7 @@ class DoCreateProject{
     }
 
     /**
-     * @Route("/project/create", methods={"POST"})
+     * @Route("/api/project/create", methods={"POST"})
      */
     public function __invoke(Request $request)
     {
