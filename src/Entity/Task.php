@@ -35,7 +35,7 @@ class Task
 
     /**
      * @ORM\ManyToOne(targetEntity=Project::class, inversedBy="tasks")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=false, referencedColumnName="id", onDelete="CASCADE")
      * @Serializer\Exclude()
      */
     private $project;

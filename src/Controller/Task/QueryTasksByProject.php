@@ -37,7 +37,7 @@ class QueryTasksByProject{
     }
 
     /**
-     * @Route("/api/get-tasks-by-project", methods={"GET"})
+     * @Route("/api/get-tasks-by-project/{projectId}", methods={"GET"})
      */
     public function __invoke(Request $request)
     {

@@ -31,8 +31,8 @@ class DoDeleteProject{
     public function __invoke(Request $request)
     {
         /** @var  $project Project */
-        $project = $this->porjectRepository->findOneBy(['id'=>$request->get('projectId'),
-                                                        'user'=> $this->security->getUser()
+        $project = $this->porjectRepository->findOneBy(['id'=>$request->get('projectId')
+                                                        
         ]);
         if(is_null($project))
         {
